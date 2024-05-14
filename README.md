@@ -13,4 +13,4 @@
     扫描端口的使用方式：python port_scan.py -a "127.0.0.1 -p 0-65535" -T 1
     http资产梳理的使用方式：python port_scan.py -a "-p http* -iL r.txt" -T 2 -t 50
 四、改进：
-    扫描http服务，效率更高，准确率比全端口扫描要低
+    扫描http服务，效率更高，准确率比全端口扫描要低,当然效率与搭建的服务器有关。
