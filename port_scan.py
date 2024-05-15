@@ -20,14 +20,13 @@ class DoRun(threading.Thread):  # 自定义 多线程运行时使用的类
     def run(self):
         while not self._queue.empty():
             date = req(self._queue.get())
-            # print(date)
-            if (date):
+            if date:
                 list.append(date)
 
 
 def init_excel(filename, sheetName):  # 创建.xlsx表格，并初始化内容
     wb = Workbook()
-    if (sheetName == "PortScan"):
+    if sheetName == "PortScan":
         head = ['numb', 'ip', 'port', 'protocol', 'state']
     else:
         head = ['numb', 'url', 'title']
@@ -75,12 +74,12 @@ def get_title(datas, thread_count):  # 使用多线程 调用req ,获取datas(�
     threads = []
     for date in datas:
         url = ''
-        if (date['protocol'] == 'https'):
+        if date['protocol'] == 'https':
             url = "https://" + date['ip'] + ":" + date['port']
-        elif ("http" in date['protocol']):
+        elif "http" in date['protocol']:
             url = "http://" + date['ip'] + ":" + date['port']
 
-        if (url != ''):
+        if url != '':
             que.put(url)
     for i in range(thread_count):
         threads.append(DoRun(que))  # 使用多线程 默认调用 run()函数
