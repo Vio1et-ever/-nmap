@@ -1,10 +1,13 @@
-一、简介
+本项目是通过python实现nmap功能
+
+对于port_scan.py
+1、简介
     本程序依靠nmap进行二次开发，目的是为了增加nmap的功能，使各位用的更舒服
-二、前提
+2、前提
     由于本程序是依靠nmap开发的，所以要求电脑先有nmap；
     附下载链接：https://nmap.org/download.html
     请大家下载自己对应电脑系统的nmap
-三、用法：
+3、用法：
     本程序在保留nmap原有功能的同时，增加了存储扫描数据和梳理内网http资产；
     参数：
         -a    --arguments     使用nmap模块时调用的参数  如   -p http* -iL r.txt   扫描r.txt文本的IP地址  获取http服务的数据
@@ -12,5 +15,12 @@
         -t	  --thread_count  线程数量，当Type=2时 使用多线程 来请求http服务，获取title  默认 50
     扫描端口的使用方式：python port_scan.py -a "127.0.0.1 -p 0-65535" -T 1
     http资产梳理的使用方式：python port_scan.py -a "-p http* -iL r.txt" -T 2 -t 50
-四、改进：
+4、改进：
     扫描http服务，效率更高，准确率比全端口扫描要低,当然效率与搭建的服务器有关。
+
+对于repscan.py
+1、简介
+    本程序是由本人编写的，无依靠nmap，利用python来实现nmap的功能
+2、用法
+    本程序尽量还原了nmap的基础功能，增加了存储扫描数据和梳理内网http资产；
+    参数：
