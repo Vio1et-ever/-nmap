@@ -16,7 +16,7 @@
     扫描端口的使用方式：python port_scan.py -a "127.0.0.1 -p 0-65535" -T 1
     http资产梳理的使用方式：python port_scan.py -a "-p http* -iL r.txt" -T 2 -t 50
 4、改进：
-    扫描http服务，效率更高，准确率比全端口扫描要低,当然效率与搭建的服务器有关。
+    扫描http服务，效率更高，准确率比全端口扫描要低,当然效率与搭建的服务器有关
 
 对于repscan.py
 1、简介
@@ -24,3 +24,18 @@
 2、用法
     本程序尽量还原了nmap的基础功能，增加了存储扫描数据和梳理内网http资产；
     参数：
+        -T --Type 当Type=1时扫描端口，当Type=2时扫描http服务，默认为1
+        -t --thread_count 线程数量，当Type=2时，使用多线程来请求http服务，获取title，默认50
+        -i --ip 要扫描的IP地址
+        -p --port 要扫描的指定端口或端口范围
+        -f --filename 要保存的文件名（只需输入文件名，不用输入文件后缀，自动存为xlsx）
+        -r --iplist 要扫描的含有IP地址的文件
+        --sn 用ping扫描端口
+    扫描端口的使用方式：
+    1）指定端口，指定ip：python repscan.py -i "127.0.0.1" -p 8080 -T 1
+    2）扫描端口范围，ip文件，将结果保存到portscan：
+    python repscan.py -r "r.txt" -p 1-1024 -f "portscan" -T 1
+    3）用ping扫描：python repscan.py --sn -i "127.0.0.1" -p 1-1024 
+    4）扫描http服务：python repscan.py -i "127.0.0.1" -T 2 -t 50
+3、改进：
+    增加了扫描http服务，脱离nmap
