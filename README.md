@@ -32,10 +32,36 @@
         -r --iplist 要扫描的含有IP地址的文件
         --sn 用ping扫描端口
     扫描端口的使用方式：
-    1）指定端口，指定ip：python repscan.py -i "127.0.0.1" -p 8080 -T 1
+    1）指定端口，指定ip：python repscan.py -i 127.0.0.1 -p 8080 -T 1
     2）扫描端口范围，ip文件，将结果保存到portscan：
     python repscan.py -r "r.txt" -p 1-1024 -f "portscan" -T 1
-    3）用ping扫描：python repscan.py --sn -i "127.0.0.1" -p 1-1024 
-    4）扫描http服务：python repscan.py -i "127.0.0.1" -T 2 -t 50
+    3）用ping扫描：python repscan.py --sn -i 127.0.0.1 -p 1-1024 
+    4）扫描http服务：python repscan.py -i 127.0.0.1 -T 2 -t 50
 3、改进：
     增加了扫描http服务，脱离nmap
+
+对于rnmap.py
+1、简介
+    本程序是由本人编写的，利用python来实现nmap的功能
+2、用法
+    "-T", "--Type" T=1 scan port, T=2 scan http service
+    "-i", "--ip" IP address to scan
+    "-p", "--ports" Port range to scan, e.g., '1-1024'
+    "-f", '--filename' filename
+    "-r", "--ipfile" A file that contains an IP address
+    "--sn" Scan the port with ping
+    "--su" Use UDP for scanning
+    扫描端口的使用方式：
+    1）指定端口，指定IP：python rnmap.py -i 127.0.0.1 -p 8080 -T 1
+    2) 范围扫描端口，IP文件，并将结果保存到portscan：
+    python rnmap.py -r "r.txt" -p 1-1024 -f "portscan" -T 1
+    3）用ping扫描：python rnmap.py --sn -i 127.0.0.1 -p 1-1024 
+    4）扫描http服务：python rnmap.py -i 127.0.0.1 -T 2 
+    5) 扫描udp服务：python rnmap.py -i 127.0.0.1
+3、改进：
+    1）相比于repscan.py，本程序采用异步编程来提高扫描效率
+    2）在原有的功能基础上，增加了许多内容，比如protocol，service，udp，更贴合nmap
+
+建议：
+    1.如果本机装有nmap，使用port_scan.py
+    2.没有nmap，建议使用rnmap.py,功能相同，效率有所提高，有保存扫描和梳理内网http资产的新功能，后续也将增加更多的功能
